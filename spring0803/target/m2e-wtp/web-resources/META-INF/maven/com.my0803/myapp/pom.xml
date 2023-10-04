@@ -28,6 +28,8 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
+		
+		<!-- spring-jdbc : jdbc 프로그래밍하면서 개발하기 지루한 부분을 spring이 대신 해줌 -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-webmvc</artifactId>
@@ -41,13 +43,17 @@
 			<version>${org.aspectj-version}</version>
 		</dependency>
 		
-		<!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+		<!-- mySQL connector java -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<version>8.0.28</version>
 		</dependency>
-
+		<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${org.springframework-version}</version>
+		</dependency>
 
 		<!-- Logging -->
 		<dependency>
