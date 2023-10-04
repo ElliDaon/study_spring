@@ -7,5 +7,6 @@
 <bean id="db" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 
 
+
 </bean>		
 </beans>
