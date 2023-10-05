@@ -10,5 +10,8 @@
 <h2>기본페이지 입니당</h2>
 <a href="<%=request.getContextPath()%>/index.do">헬로월드 페이지</a>
 <a href="<%=request.getContextPath()%>/introduction.do">자기소개 페이지</a>
+<br>
+<a href="<%=request.getContextPath()%>/member/memberJoin.do">회원가입 페이지</a>
+
 </body>
 </html>
