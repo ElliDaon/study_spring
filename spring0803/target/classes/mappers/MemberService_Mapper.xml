@@ -5,8 +5,8 @@
 <mapper namespace="com.my0803.myapp.persistance.MemberService_Mapper">
 
 <insert id="memberInsert" parameterType="mv">
-INSERT INTO member0803(MEMBERID,MEMBERPWD,MEMBERNAME,MEMBERBIRTH,MEMBERGENDER,MEMBERPHONE,MEMBEREMAIL,MEMBERADDR)
-VALUES(#{memberId},#{memberPwd},#{memberName},#{memberBirth},#{memberGender},#{memberPhone},#{memberEmail},#{memberAddr})
+INSERT INTO member0803(MEMBERID,MEMBERPWD,MEMBERNAME,MEMBERBIRTH,MEMBERGENDER,MEMBERPHONE,MEMBEREMAIL,MEMBERADDR,MEMBERHOBBY)
+VALUES(#{memberId},#{memberPwd},#{memberName},#{memberBirth},#{memberGender},#{memberPhone},#{memberEmail},#{memberAddr},#{memberHobby})
 </insert>
 
 </mapper>

@@ -24,6 +24,10 @@ public class MemberController {
 	
 	@RequestMapping(value="/memberJoinAction.do")
 	public String memberJoinAction(MemberVo mv) { //input 객체들의 값을 바인딩한다.
+
+		
+		String birth = mv.getMemberYear() + mv.getMemberMonth() + mv.getMemberDay();
+		mv.setMemberBirth(birth);
 		
 		//처리하는 입력 로직
 		int value = ms.memberInsert(mv);

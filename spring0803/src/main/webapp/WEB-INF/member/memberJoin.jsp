@@ -266,11 +266,25 @@ function check(){
 						</c:forEach>
 				</select> <select name="memberMonth">
 						<c:forEach var="i" begin="01" end="12" step="1">
+						<c:choose>
+						<c:when test="${i<10}">
+							<option value="0${i}">${i}</option>
+						</c:when>
+						<c:otherwise>
 						<option value="${i}">${i}</option>
+						</c:otherwise>					
+						</c:choose>
 						</c:forEach>
 				</select> <select name="memberDay">
 						<c:forEach var="i" begin="01" end="31" step="1">
+						<c:choose>
+						<c:when test="${i<10}">
+							<option value="0${i}">${i}</option>
+						</c:when>
+						<c:otherwise>
 						<option value="${i}">${i}</option>
+						</c:otherwise>					
+						</c:choose>
 						</c:forEach>
 				</select></td>
 			</tr>
@@ -292,11 +306,12 @@ function check(){
 			</tr>
 			<tr>
 				<th>취미</th>
-				<td class="hobbycheck"><input type="checkbox"
-					name="memberHobby" value="축구">축구 <input type="checkbox"
-					name="memberHobby" value="골프">골프 <input type="checkbox"
-					name="memberHobby" value="야구">야구 <input type="checkbox"
-					name="memberHobby" value="없음">없음</td>
+				<td class="hobbycheck">
+				<input type="checkbox"name="memberHobby" value="축구">축구
+				<input type="checkbox"name="memberHobby" value="골프">골프 
+				<input type="checkbox"name="memberHobby" value="야구">야구 
+				<input type="checkbox"name="memberHobby" value="없음">없음
+				</td>
 			</tr>
 			<tr>
 				<td colspan="2" style="text-align: center;">

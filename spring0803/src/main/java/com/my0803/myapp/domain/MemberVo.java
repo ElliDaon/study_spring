@@ -15,6 +15,9 @@ public class MemberVo {
 	private String memberHobby;
 	private String memberGender;
 	private String memberAddr;
+	private String memberYear;
+	private String memberMonth;
+	private String memberDay;
 	
 	
 	public int getMidx() { //회원번호 값을 꺼내는 메소드
@@ -95,8 +98,25 @@ public class MemberVo {
 	}
 	public void setMemberAddr(String memberAddr) {
 		this.memberAddr = memberAddr;
+	}	
+	public String getMemberYear() {
+		return memberYear;
 	}
-	
+	public void setMemberYear(String memberYear) {
+		this.memberYear = memberYear;
+	}
+	public String getMemberMonth() {
+		return memberMonth;
+	}
+	public void setMemberMonth(String memberMonth) {
+		this.memberMonth = memberMonth;
+	}
+	public String getMemberDay() {
+		return memberDay;
+	}
+	public void setMemberDay(String memberDay) {
+		this.memberDay = memberDay;
+	}
 	
 	
 	
