@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="utf-8">
-<title>Insert title here</title>
+<title>로그인</title>
 <style>
 body {
 	background: #f6f4f3;
@@ -146,7 +146,7 @@ function check(){
 		<ul>
 			<li><a href="memberList.do">회원목록</a></li>
 			<li><a href="../board/boardList.do">게시글 목록</a></li>
-			<li><a href="../board/boardWrite.html">게시글 쓰기</a></li>
+			<li><a href="../board/boardWrite.do">게시글 쓰기</a></li>
 			<li><a href="memberLogin.do">로그인</a></li>
 			<li><a href="memberJoin.do">회원가입</a></li>
 		</ul>

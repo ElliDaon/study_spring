@@ -12,6 +12,10 @@
 <a href="<%=request.getContextPath()%>/introduction.do">자기소개 페이지</a>
 <br>
 <a href="<%=request.getContextPath()%>/member/memberJoin.do">회원가입 페이지</a>
+<br>
+<a href="<%=request.getContextPath()%>/member/memberLogin.do">로그인 페이지</a>
+<br>
+<a href="<%=request.getContextPath()%>/board/boardWrite.do">글쓰기 페이지</a>
 
 </body>
 </html>

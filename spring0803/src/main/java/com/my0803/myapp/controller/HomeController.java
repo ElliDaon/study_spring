@@ -17,8 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 	
-	//@Resource(name="db") //객체참조변수 이름으로 찾는다
 	//@Inject 
+	//@Resource(name="db") //객체참조변수 이름으로 찾는다
 	@Autowired //메모리공간안에 같은 타입객체를 찾는다
 	DriverManagerDataSource dmds; //멤버변수에 주입을 시킨다.(Dependency Inject - DI)
 
@@ -35,13 +35,13 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "/views/home";
 	}
 	@RequestMapping(value = "/introduction.do", method = RequestMethod.GET)
 	public String introduction() {
 		
 		System.out.println("dmds 주소값이 있나요?" + dmds);
-		return "introduction";
+		return "/views/introduction";
 	}
 	
 }
