@@ -1,5 +1,7 @@
 package com.my0803.myapp.service;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +25,22 @@ public class MemberServiceImpl implements MemberService{
 		
 		return value;
 	}
-	
+
+	@Override
+	public MemberVo memberLogin(String memberId, String memberPwd) {
+		
+		MemberVo mv = null;
+		
+		//HashMap
+		HashMap<String,String> hm = new HashMap<>();
+		hm.put("memberId", memberId);
+		hm.put("memberPwd", memberPwd);
+		
+		//마이바티스와 연동할 준비
+		MemberService_Mapper msm = sqlSession.getMapper(MemberService_Mapper.class);
+		mv = msm.memberLogin(hm);
+		
+		return mv ;
+	}
 	
 }
