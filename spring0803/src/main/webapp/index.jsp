@@ -13,7 +13,13 @@
 <br>
 <a href="<%=request.getContextPath()%>/member/memberJoin.do">회원가입 페이지</a>
 <br>
+<br>
+<%if(session.getAttribute("midx")==null){%>
 <a href="<%=request.getContextPath()%>/member/memberLogin.do">로그인 페이지</a>
+<%} else{ %>
+<a href="<%=request.getContextPath()%>/member/memberLogout.do">로그아웃</a>
+<%} %>
+
 <br>
 <a href="<%=request.getContextPath()%>/board/boardWrite.do">글쓰기 페이지</a>
 

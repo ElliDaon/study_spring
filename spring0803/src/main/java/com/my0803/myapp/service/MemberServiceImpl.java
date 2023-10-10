@@ -13,14 +13,18 @@ import com.my0803.myapp.persistance.MemberService_Mapper;
 @Service
 public class MemberServiceImpl implements MemberService{
 
+	private MemberService_Mapper msm;
+	
 	@Autowired
-	SqlSession sqlSession;
+	public MemberServiceImpl(SqlSession sqlSession) {
+		this.msm = sqlSession.getMapper(MemberService_Mapper.class);
+	}
 	
 	@Override
 	public int memberInsert(MemberVo mv) {
 		
 		//mybatis에서 사용하는 메소드를 정의해놓은 인터페이스를 부른다.
-		MemberService_Mapper msm = sqlSession.getMapper(MemberService_Mapper.class);
+		
 		int value = msm.memberInsert(mv);
 		
 		return value;
@@ -37,7 +41,6 @@ public class MemberServiceImpl implements MemberService{
 		hm.put("memberPwd", memberPwd);
 		
 		//마이바티스와 연동할 준비
-		MemberService_Mapper msm = sqlSession.getMapper(MemberService_Mapper.class);
 		mv = msm.memberLogin(hm);
 		
 		return mv ;

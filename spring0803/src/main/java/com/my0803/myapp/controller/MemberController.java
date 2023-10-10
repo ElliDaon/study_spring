@@ -1,5 +1,8 @@
 package com.my0803.myapp.controller;
 
+
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,17 +46,26 @@ public class MemberController {
 	@RequestMapping(value = "/memberLoginAction.do")
 	public String memberLoginAction(
 			@RequestParam("memberId") String memberId, 
-			@RequestParam("memberPwd") String memberPwd) {
+			@RequestParam("memberPwd") String memberPwd,
+			HttpSession session) {
 
 		MemberVo mv = ms.memberLogin(memberId, memberPwd);
 		
 		if(mv!=null) {
+			session.setAttribute("midx",mv.getMemberId());
+			session.setAttribute("memberName", mv.getMemberName());
 			return "redirect:/";
 		}else {
 			return "/member/memberLogin";
 		}
-		
-		
+	}
+	
+	@RequestMapping(value = "/memberLogout.do")
+	public String memberLogout(HttpSession session) {
+		session.removeAttribute("midx");
+		session.removeAttribute("memberName");
+		session.invalidate();
+		return "redirect:/";
 	}
 
 }
