@@ -13,4 +13,8 @@ VALUES(#{memberId},#{memberPwd},#{memberName},#{memberBirth},#{memberGender},#{m
 SELECT MIDX,MEMBERID, MEMBERNAME FROM member0803 WHERE DELYN='N' AND MEMBERID=#{memberId} AND MEMBERPWD=#{memberPwd};
 </select>
 
+<select id="memberLogin2" parameterType="String" resultType="mv">
+SELECT MIDX,MEMBERID, MEMBERNAME, MEMBERPWD FROM member0803 WHERE DELYN='N' AND MEMBERID=#{memberId};
+</select>
+
 </mapper>

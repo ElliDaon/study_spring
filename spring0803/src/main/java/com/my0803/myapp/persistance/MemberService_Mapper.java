@@ -9,5 +9,6 @@ public interface MemberService_Mapper {
 	
 	public int memberInsert(MemberVo mv);
 	public MemberVo memberLogin(HashMap hm);
+	public MemberVo memberLogin2(String memberId);
 	
 }

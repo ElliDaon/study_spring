@@ -45,5 +45,14 @@ public class MemberServiceImpl implements MemberService{
 		
 		return mv ;
 	}
+
+	@Override
+	public MemberVo memberLogin2(String memberId) {
+		
+		MemberVo mv = null;
+		mv = msm.memberLogin2(memberId);
+		
+		return mv;
+	}
 	
 }

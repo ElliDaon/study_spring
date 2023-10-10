@@ -4,6 +4,7 @@ package com.my0803.myapp.controller;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +19,9 @@ public class MemberController {
 	@Autowired
 	MemberService ms;
 	// 인터페이스를 지정하고 주입한다.
+	
+	@Autowired
+	private BCryptPasswordEncoder bcryptPasswordEncoder;
 
 	@RequestMapping(value = "/memberJoin.do")
 	public String memberJoin() {
@@ -30,6 +34,10 @@ public class MemberController {
 
 		String birth = mv.getMemberYear() + mv.getMemberMonth() + mv.getMemberDay();
 		mv.setMemberBirth(birth);
+		
+		String memberPwd2 = bcryptPasswordEncoder.encode(mv.getMemberPwd());
+		mv.setMemberPwd(memberPwd2); 
+		
 
 		// 처리하는 입력 로직
 		int value = ms.memberInsert(mv);
@@ -49,11 +57,14 @@ public class MemberController {
 			@RequestParam("memberPwd") String memberPwd,
 			HttpSession session) {
 
-		MemberVo mv = ms.memberLogin(memberId, memberPwd);
 		
-		if(mv!=null) {
+		MemberVo mv = ms.memberLogin2(memberId);
+		
+		if(mv!=null&&bcryptPasswordEncoder.matches(memberPwd, mv.getMemberPwd())) {
+			
 			session.setAttribute("midx",mv.getMemberId());
 			session.setAttribute("memberName", mv.getMemberName());
+			
 			return "redirect:/";
 		}else {
 			return "/member/memberLogin";
