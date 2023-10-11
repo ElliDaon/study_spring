@@ -23,4 +23,8 @@ SELECT * FROM board0803 WHERE DELYN='N' ORDER BY originbidx desc, depth asc
 <select id="boardContents" parameterType="int" resultType="bv">
 SELECT * FROM board0803 WHERE bidx=#{bidx}
 </select>
+
+<update id="boardViewCnt" parameterType="int">
+UPDATE board0803 SET VIEWCNT=VIEWCNT+1 WHERE bidx=#{bidx}
+</update>
 </mapper>

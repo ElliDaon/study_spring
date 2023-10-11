@@ -36,8 +36,8 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardVo boardContents(int bidx) {
 		BoardVo bv = null;
+		bsm.boardViewCnt(bidx);		
 		bv = bsm.boardContents(bidx);
-				
 		return bv;
 	}
 
