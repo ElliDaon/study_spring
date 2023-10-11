@@ -10,6 +10,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -67,7 +68,7 @@ public class MemberController {
 		
 		if(mv!=null&&bcryptPasswordEncoder.matches(memberPwd, mv.getMemberPwd())) {
 			
-			session.setAttribute("midx",mv.getMemberId());
+			session.setAttribute("midx",mv.getMidx());
 			session.setAttribute("memberName", mv.getMemberName());
 			path="index.jsp";
 			

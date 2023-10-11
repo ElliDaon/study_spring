@@ -75,9 +75,9 @@ function check(){
 		return;
 	}
 	
-	fm.action = "<%=request.getContextPath()%>/board/boardWriteAction.do";  //처리하기위해 이동하는 주소
-	fm.method = "post";  //이동하는 방식  get 노출시킴 post 감추어서 전달
-	fm.enctype= "multipart/form-data";
+	fm.action = "<%=request.getContextPath()%>/board/boardWriteAction.do"; 
+	fm.method = "post"; 
+	//fm.enctype= "multipart/form-data";
 	fm.submit();
 	
 }
@@ -95,26 +95,26 @@ function check(){
 	</nav>
 	<h3>게시판 작성</h3>
 	<hr>
-	<form name="frm" action="" method="" value="">
+	<form name="frm" id="frm">
 	<div id="content_page">
 		<div id="in_title">
-			<textarea name="subject" id="utitle" rows="1" cols="50"
-				placeholder="제목" maxlength="100" value="" required></textarea>
+			<textarea name="subject" id="subject" rows="1" cols="50"
+				placeholder="제목" maxlength="100" value=""></textarea>
 		</div>
 
 		<div id="in_content">
-			<textarea name="contents" id="content" placeholder="내용" rows="20"
-				cols="50" value="" required></textarea>
+			<textarea name="contents" id="contents" placeholder="내용" rows="20"
+				cols="50"></textarea>
 		</div>
 		<div class="filebox">
 			<label for="filename">
 			<input type="file" id="filename" name = "filename" value=""  ></label>
 		</div>
 		<div>
-			닉네임: <input type="text" name = "writer" placeholder="닉네임" value="" >
+			닉네임: <input type="text" name = "writer" id="writer" placeholder="닉네임" value="" >
 		</div>
 		<div>
-			비밀번호: <input type="password" name = "pwd" placeholder="비밀번호" value="" >
+			비밀번호: <input type="password" name = "pwd" id="pwd" placeholder="비밀번호" value="" >
 		</div>
 		<br><br>
 		<div>

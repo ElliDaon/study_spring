@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.my0803.myapp.persistance.BoardService_Mapper">
+
+<insert id="boardInsert" parameterType="bv">
+<selectKey resultType="int" keyProperty="bidx" order="AFTER">
+select max(bidx) as bidx from board0803
+</selectKey>
+INSERT INTO board0803(originbidx, depth, level_, subject, contents, writer, pwd, midx)
+values(null,0, 0, #{subject}, #{contents}, #{writer}, #{pwd}, #{midx});
+</insert>
+
+<update id="boardOriginBidxUpdate" parameterType="int">
+UPDATE board0803 SET originbidx=#{bidx} where bidx=#{bidx}
+</update>
+
+<select id="boardList" resultType="bv">
+SELECT * FROM board0803 WHERE DELYN='N' ORDER BY originbidx DESC, level_ ASC, depth ASC
+</select>
+</mapper>
