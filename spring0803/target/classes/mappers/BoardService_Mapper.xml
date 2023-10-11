@@ -17,6 +17,10 @@ UPDATE board0803 SET originbidx=#{bidx} where bidx=#{bidx}
 </update>
 
 <select id="boardList" resultType="bv">
-SELECT * FROM board0803 WHERE DELYN='N' ORDER BY originbidx DESC, level_ ASC, depth ASC
+SELECT * FROM board0803 WHERE DELYN='N' ORDER BY originbidx desc, depth asc
+</select>
+
+<select id="boardContents" parameterType="int" resultType="bv">
+SELECT * FROM board0803 WHERE bidx=#{bidx}
 </select>
 </mapper>

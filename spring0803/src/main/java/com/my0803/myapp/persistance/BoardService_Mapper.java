@@ -8,4 +8,5 @@ public interface BoardService_Mapper {
 	public int boardInsert(BoardVo bv);
 	public int boardOriginBidxUpdate(int bidx);
 	public ArrayList<BoardVo> boardList();
+	public BoardVo boardContents(int bidx);
 }

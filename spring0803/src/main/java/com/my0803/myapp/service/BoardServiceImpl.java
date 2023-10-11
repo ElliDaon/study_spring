@@ -29,8 +29,17 @@ public class BoardServiceImpl implements BoardService{
 
 	@Override
 	public ArrayList<BoardVo> boardList() {
-		
-		return null;
+		ArrayList<BoardVo> list = bsm.boardList();
+		return list;
 	}
+
+	@Override
+	public BoardVo boardContents(int bidx) {
+		BoardVo bv = null;
+		bv = bsm.boardContents(bidx);
+				
+		return bv;
+	}
+
 	
 }
