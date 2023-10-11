@@ -17,4 +17,11 @@ SELECT MIDX,MEMBERID, MEMBERNAME FROM member0803 WHERE DELYN='N' AND MEMBERID=#{
 SELECT MIDX,MEMBERID, MEMBERNAME, MEMBERPWD FROM member0803 WHERE DELYN='N' AND MEMBERID=#{memberId};
 </select>
 
+<select id="memberIdCheck" parameterType="String" resultType="int">
+SELECT COUNT(*) AS cnt FROM member0803 WHERE MEMBERID=#{memberId}
+</select>
+
+<select id="memberList" resultType="mv">
+SELECT MIDX, MEMBERID, MEMBERNAME, WRITEDAY FROM member0803 WHERE DELYN='N' ORDER BY MIDX DESC
+</select>
 </mapper>

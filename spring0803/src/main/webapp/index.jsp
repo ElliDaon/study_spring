@@ -22,6 +22,8 @@
 
 <br>
 <a href="<%=request.getContextPath()%>/board/boardWrite.do">글쓰기 페이지</a>
+<br>
+<a href="<%=request.getContextPath()%>/member/memberList.do">회원목록</a>
 
 </body>
 </html>

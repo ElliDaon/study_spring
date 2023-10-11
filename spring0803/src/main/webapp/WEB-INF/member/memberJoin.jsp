@@ -97,14 +97,14 @@ $(document).ready(function(){
 		
 		$.ajax({
 			type: "post",
-			url: "./memberIdCheck.jsp",
+			url: "<%=request.getContextPath()%>/member/memberIdCheck.do",
 			data: {"memberId" : memberId},
 			dataType: "json",
 			success: function(data){
 				var fm = document.frm;
 				if(fm.memberId.value==""){
 					alert("아이디를 입력해주세요!!");
-				}else if(data.cnt == 0){
+				}else if(data.value == 0){
 					alert("사용할 수 있는 아이디입니다.");
 				}else{
 					alert("사용할 수 없는 아이디입니다ㅠㅠ.");
@@ -224,14 +224,9 @@ function check(){
 		<table border="1" style="width: 600px">
 			<tr>
 				<th style="width: 200px" maxlength="30">아이디</th>
-				<td><input type="text" name="memberId" id="memberId" value=""
-					placeholder="ID를 입력하세요">
-					<input type="button" name="byn" id="btn" value="아이디 중복체크">
-					<!-- 
-<input type="button" name="memberIdCheck" value="아이디 중복체크">
-<button type="button" name="membeButtonTest">이런버튼도있어요</button>
-<input type="image" name="memberButtonTest2" src="./images/ma.jpg" style="width:20px">
---></td>
+				<td><input type="text" name="memberId" id="memberId" value="" placeholder="ID를 입력하세요">
+					<input type="button" name="btn" id="btn" value="아이디 중복체크">
+				</td>
 			</tr>
 			<tr>
 				<th style="color: red"font-weight:bold">비밀번호</th>

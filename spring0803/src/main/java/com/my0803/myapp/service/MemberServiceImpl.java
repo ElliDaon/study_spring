@@ -1,5 +1,6 @@
 package com.my0803.myapp.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.apache.ibatis.session.SqlSession;
@@ -29,7 +30,8 @@ public class MemberServiceImpl implements MemberService{
 		
 		return value;
 	}
-
+	
+/*
 	@Override
 	public MemberVo memberLogin(String memberId, String memberPwd) {
 		
@@ -45,7 +47,8 @@ public class MemberServiceImpl implements MemberService{
 		
 		return mv ;
 	}
-
+*/
+	
 	@Override
 	public MemberVo memberLogin2(String memberId) {
 		
@@ -53,6 +56,22 @@ public class MemberServiceImpl implements MemberService{
 		mv = msm.memberLogin2(memberId);
 		
 		return mv;
+	}
+
+	@Override
+	public int memberIdCheck(String memberId) {
+		
+		int value = 0;
+		value = msm.memberIdCheck(memberId);
+		return value;
+	}
+
+	@Override
+	public ArrayList<MemberVo> memberList() {
+		
+		ArrayList<MemberVo> list = msm.memberList();
+
+		return list;
 	}
 	
 }

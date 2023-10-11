@@ -1,13 +1,17 @@
 package com.my0803.myapp.controller;
 
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.my0803.myapp.domain.MemberVo;
 import com.my0803.myapp.service.MemberService;
@@ -59,16 +63,18 @@ public class MemberController {
 
 		
 		MemberVo mv = ms.memberLogin2(memberId);
+		String path="";
 		
 		if(mv!=null&&bcryptPasswordEncoder.matches(memberPwd, mv.getMemberPwd())) {
 			
 			session.setAttribute("midx",mv.getMemberId());
 			session.setAttribute("memberName", mv.getMemberName());
+			path="index.jsp";
 			
-			return "redirect:/";
 		}else {
-			return "/member/memberLogin";
+			path="member/memberLogin.do";
 		}
+		return "redirect:/"+path;
 	}
 	
 	@RequestMapping(value = "/memberLogout.do")
@@ -77,6 +83,24 @@ public class MemberController {
 		session.removeAttribute("memberName");
 		session.invalidate();
 		return "redirect:/";
+	}
+	
+	@ResponseBody  //응답할 때 객체로 보낸다
+	@RequestMapping(value = "/memberIdCheck.do")
+	public String memberIdCheck(String memberId) {
+		
+		String str = null;
+		int value = ms.memberIdCheck(memberId);
+		str = "{\"value\":\""+ value +"\"}";
+		
+		return str;
+	}
+	
+	@RequestMapping(value = "/memberList.do")
+	public String memberList(Model model) {
+		ArrayList<MemberVo> list = ms.memberList();
+		model.addAttribute("list",list);
+		return "/member/memberList";
 	}
 
 }

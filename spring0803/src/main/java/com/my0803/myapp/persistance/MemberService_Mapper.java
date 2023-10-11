@@ -1,6 +1,6 @@
 package com.my0803.myapp.persistance;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 import com.my0803.myapp.domain.MemberVo;
 
@@ -8,7 +8,8 @@ import com.my0803.myapp.domain.MemberVo;
 public interface MemberService_Mapper {
 	
 	public int memberInsert(MemberVo mv);
-	public MemberVo memberLogin(HashMap hm);
+	//public MemberVo memberLogin(HashMap hm);
 	public MemberVo memberLogin2(String memberId);
-	
+	public int memberIdCheck(String memberId);
+	public ArrayList<MemberVo> memberList();
 }
