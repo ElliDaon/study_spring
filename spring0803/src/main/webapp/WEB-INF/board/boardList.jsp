@@ -141,77 +141,55 @@ strong{
 			</tr>
 		</thead>
 		<tbody>
-			<% //for(BoardVo bv : list ) {%>
 			<c:forEach var="bv" items="${list}">
 			<tr>
 			<td><%//=bv.getBidx() %>${bv.bidx}</td>
 			<td style="text-align:left">
-			<%// for(int i=1; i<=bv.getLevel_(); i++){
-				//out.print("&nbsp;&nbsp;&nbsp;");
-				//if(i == bv.getLevel_()){
-				//	out.print("└");
-				//}
-			//}
-			%>
 			<c:forEach var="i" begin="1" end="${bv.level_}" step="1">
 				&nbsp;&nbsp;&nbsp;
 				<c:if test="${i==bv.level_}">
 					└
 				</c:if>
 			</c:forEach>
-			<a href="${pageContext.request.contextPath}/board/boardContents.do?bidx=<%//=bv.getBidx() %>${bv.bidx}">
-			<%//=bv.getSubject() %>${bv.subject}</a></td>
-			<td><%//=bv.getWriter() %>${bv.writer}</td>
-			<td><%//=bv.getViewcnt() %>${bv.viewcnt}</td>
-			<td><%//=bv.getWriteday() %>${bv.writeday}</td>
+			<a href="${pageContext.request.contextPath}/board/boardContents.do?bidx=${bv.bidx}">
+			${bv.subject}</a></td>
+			<td>${bv.writer}</td>
+			<td>${bv.viewcnt}</td>
+			<td>${bv.writeday}</td>
 			</tr>
 			</c:forEach>
-			<% //} %>	
 		</tbody>
 	</table>
-	<%
-	//String parameter = "";
-	//if(!pm.getScri().getKeyword().equals("")){
-	//	parameter = "&searchType="+pm.getScri().getSearchType()+"&keyword="+pm.getScri().getKeyword();
-	//}
-	%>
 	<c:set var="keyword" value="${pm.scri.keyword}" />
 	<c:set var="parm" value="&searchType=${pm.scri.searchType}&keyword=${pm.scri.keyword}"/>
 	<table>
 	<tr name="page_line" style="background-color:#f6f4f3" onmouseover="this.style.background='#f6f4f3'; this.style.color='black'">
 	<td style="text-align:right" width="200px">
-	<%// if(pm.isPrev()==true){ %>
 	<c:if test="${pm.prev == true}">
-	<a href="<%//=request.getContextPath()%>${pageContext.request.contextPath}/board/boardList.do?page=<%//=pm.getStartPage()-1%>${pm.startPage-1}">
+	<a href="${pageContext.request.contextPath}/board/boardList.do?page=${pm.startPage-1}">
 	◀
 	</a>
-	<% //}%>
 	</c:if>
 	</td>
 	<td>
-	<%// for(int i=pm.getStartPage(); i<=pm.getEndPage(); i++){
-	%>
 	<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1" >
 	<c:choose>
 	<c:when test="${i == pm.scri.page}">
-	<a href="${pageContext.request.contextPath}/board/boardList.do?page=<%//=i%>${i}<%//=parameter%>${parm}">
-	<strong><%//=i %>${i}</strong></a>
+	<a href="${pageContext.request.contextPath}/board/boardList.do?page=${i}${parm}">
+	<strong>${i}</strong></a>
 	</c:when> 
 	<c:otherwise>
 		<a href="${pageContext.request.contextPath}/board/boardList.do?page=${i}${parm}">
-		<%//=i %>
 		${i}</a>
 	</c:otherwise>
 	</c:choose>		
 	</c:forEach>
 	</td>
 	<td style="text-align:left" width="200px">
-	<% //if(pm.isNext()==true && pm.getEndPage()>0){ %>
 	<c:if test="${pm.next == true && pm.endPage > 0}">
-	<a href="${pageContext.request.contextPath}/board/boardList.do?page=<%//=pm.getEndPage()+1%>${pm.endPage +1}">
+	<a href="${pageContext.request.contextPath}/board/boardList.do?page=${pm.endPage +1}">
 	▶
 	</a>
-	<% //}%>
 	</c:if>
 	</td>
 	</tr>

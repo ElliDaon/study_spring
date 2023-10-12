@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.my0803.myapp.domain.BoardVo;
+import com.my0803.myapp.domain.PageMaker;
+import com.my0803.myapp.domain.SearchCriteria;
 import com.my0803.myapp.service.BoardService;
 
 @Controller //컨트롤러 용도의 객체생성 요청
@@ -26,6 +28,8 @@ public class BoardController {
 		return "/board/boardWrite";
 	}
 	
+	@Autowired(required=false)
+	private PageMaker pm;
 
 	@RequestMapping(value="/boardWriteAction.do")
 	public String boardWriteAction(BoardVo bv, HttpSession session) {
@@ -38,9 +42,15 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/boardList.do")
-	public String boardList(Model model) {
-		ArrayList<BoardVo> list = bs.boardList();
+	public String boardList(SearchCriteria scri, Model model) {
+		
+		int totalCount = bs.boardTotalCount(scri);
+		pm.setScri(scri);
+		pm.setTotalCount(totalCount);
+		
+		ArrayList<BoardVo> list = bs.boardList(scri);
 		model.addAttribute("list",list);
+		model.addAttribute("pm", pm);
 		return "/board/boardList";
 	}
 	

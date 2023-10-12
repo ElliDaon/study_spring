@@ -1,6 +1,9 @@
 package com.my0803.myapp.domain;
 
+import org.springframework.stereotype.Component;
+
 //하단 페이지 네비게이션에 필요한 변수들의 집합 데이터 클래스
+@Component
 public class PageMaker {
 	private int displayPageNum = 10; //보여지는 페이지 목록 갯수
 	private int startPage; //목록의 시작 번호

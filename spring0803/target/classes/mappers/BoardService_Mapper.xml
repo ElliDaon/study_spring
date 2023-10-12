@@ -16,8 +16,25 @@ values(null,0, 0, #{subject}, #{contents}, #{writer}, #{pwd}, #{midx});
 UPDATE board0803 SET originbidx=#{bidx} where bidx=#{bidx}
 </update>
 
-<select id="boardList" resultType="bv">
-SELECT * FROM board0803 WHERE DELYN='N' ORDER BY originbidx desc, depth asc
+<sql id="search">
+<if test="searchType!=null and searchType.equals('writer')">
+	and writer like concat('%',#{keyword},'%') 
+</if>
+<if test="searchType!=null and searchType.equals('subject')">
+	and subject like concat('%',#{keyword},'%') 
+</if>
+
+</sql>
+
+<select id="boardList" parameterType="scri" resultType="bv">
+SELECT * FROM board0803 WHERE DELYN='N' 
+<include refid="search"/>
+ORDER BY originbidx desc, depth asc limit #{page},#{perPageNum};
+</select>
+
+<select id="boardTotalCount" parameterType="scri" resultType="int">
+SELECT count(*) as cnt FROM board0803 WHERE DELYN='N'
+<include refid="search"/>
 </select>
 
 <select id="boardContents" parameterType="int" resultType="bv">
