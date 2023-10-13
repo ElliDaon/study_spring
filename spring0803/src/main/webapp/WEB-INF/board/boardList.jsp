@@ -174,7 +174,7 @@ strong{
 	<td>
 	<c:forEach var="i" begin="${pm.startPage}" end="${pm.endPage}" step="1" >
 	<c:choose>
-	<c:when test="${i == pm.scri.page}">
+	<c:when test="${i == pm.scri.page/10+1}">
 	<a href="${pageContext.request.contextPath}/board/boardList.do?page=${i}${parm}">
 	<strong>${i}</strong></a>
 	</c:when> 

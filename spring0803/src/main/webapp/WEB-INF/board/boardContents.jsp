@@ -4,15 +4,6 @@
 <%@ page import="com.my0803.myapp.domain.CommentVo"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<%
-	//if(session.getAttribute("midx")==null){
-	//	out.println("<script>alert('로그인하셔야합니다!');location.href='"+
-	//request.getContextPath()+"/member/memberLogin.do'</script>");
-	//}
-
-	//BoardVo bv = (BoardVo) request.getAttribute("bv");
-	//CommentVo cv = (CommentVo) request.getAttribute("cv");
-%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,6 +74,7 @@ $.boardCommentList= function(){
 		type : "get",
 		url : "${pageContext.request.contextPath}/comment/commentList.do",
 		dataType : "json",
+		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		cache : false,
 		success : function(data){
 			//alert("통신성공");
