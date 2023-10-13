@@ -8,8 +8,8 @@
 <selectKey resultType="int" keyProperty="bidx" order="AFTER">
 select max(bidx) as bidx from board0803
 </selectKey>
-INSERT INTO board0803(originbidx, depth, level_, subject, contents, writer, pwd, midx)
-values(null,0, 0, #{subject}, #{contents}, #{writer}, #{pwd}, #{midx});
+INSERT INTO board0803(originbidx, depth, level_, subject, contents, writer, pwd, midx, ip, filename)
+values(null,0, 0, #{subject}, #{contents}, #{writer}, #{pwd}, #{midx},#{ip},#{filename2});
 </insert>
 
 <update id="boardOriginBidxUpdate" parameterType="int">
@@ -41,7 +41,19 @@ SELECT count(*) as cnt FROM board0803 WHERE DELYN='N'
 SELECT * FROM board0803 WHERE bidx=#{bidx}
 </select>
 
-<update id="boardViewCnt" parameterType="int">
+<update id="boardModify" parameterType="bv" >
+UPDATE board0803 SET SUBJECT = #{subject}, CONTENTS=#{contents}, WRITER=#{writer}, MODIFYDAY=now()
+WHERE bidx=#{bidx} AND PWD=#{pwd}
+</update>
+
+<update id="boardDelete" parameterType="bv" >
+UPDATE board0803 SET DELYN='Y'
+WHERE bidx=#{bidx} AND PWD=#{pwd}
+</update>
+
+<update id="boardViewCnt" parameterType="int" >
 UPDATE board0803 SET VIEWCNT=VIEWCNT+1 WHERE bidx=#{bidx}
 </update>
+
+
 </mapper>

@@ -10,4 +10,6 @@ public interface BoardService {
 	public ArrayList<BoardVo> boardList(SearchCriteria scri);
 	public int boardTotalCount(SearchCriteria scri);
 	public BoardVo boardContents(int bidx);
+	public int boardModify(BoardVo bv);
+	public int boardDelete(BoardVo bv);
 }
