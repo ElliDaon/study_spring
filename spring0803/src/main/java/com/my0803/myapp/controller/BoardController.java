@@ -1,7 +1,7 @@
 package com.my0803.myapp.controller;
 
-import java.io.IOException;
 import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 
 import javax.annotation.Resource;
@@ -116,5 +116,20 @@ public class BoardController {
 		else {
 			return "redirect:/board/boardDelete.do?bidx="+bv.getBidx();
 		}
+	}
+	
+	@RequestMapping(value="/boardReply.do")
+	public String boardReply(BoardVo bv, Model model) {
+		model.addAttribute("bv", bv);
+		return "/board/boardReply";
+	}
+	
+	@RequestMapping(value="/boardReplyAction.do")
+	public String boardReplyAction(BoardVo bv, HttpSession session) throws Exception {
+		bv.setMidx(((Integer)session.getAttribute("midx")).intValue());
+		String ip = InetAddress.getLocalHost().getHostAddress();
+		bv.setIp(ip);
+		bs.boardReply(bv);
+		return "redirect:/board/boardContents.do?bidx="+bv.getBidx();
 	}
 }

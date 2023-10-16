@@ -55,5 +55,12 @@ WHERE bidx=#{bidx} AND PWD=#{pwd}
 UPDATE board0803 SET VIEWCNT=VIEWCNT+1 WHERE bidx=#{bidx}
 </update>
 
+<update id="boardUpdateDepth" parameterType="int" >
+update board0803 set depth = depth+1 where depth > #{depth}
+</update>
 
+<insert id="boardReply" parameterType="bv">
+INSERT INTO board0803(originbidx, depth, level_, SUBJECT, contents, writer, midx, pwd, ip)
+VALUES(#{originbidx}, #{depth}+1, #{level_}+1, #{subject}, #{contents}, #{writer}, #{midx}, #{pwd}, #{ip})
+</insert>
 </mapper>
