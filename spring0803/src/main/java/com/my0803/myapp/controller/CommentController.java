@@ -1,16 +1,13 @@
 package com.my0803.myapp.controller;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.my0803.myapp.domain.CommentVo;
 import com.my0803.myapp.service.CommentService;
 
@@ -24,9 +21,9 @@ public class CommentController {
 	
 	@ResponseBody
 	@RequestMapping(value="/commentList.do", produces = "application/text; charset=utf8")
-	public String boardList() {
+	public String boardList(@RequestParam("bidx") int bidx) {
 		String str="";
-		ArrayList<CommentVo> list = cs.commentList();
+		ArrayList<CommentVo> list = cs.commentList(bidx);
 		int size = list.size();
 		int cidx = 0;
 		String cwriter = "";

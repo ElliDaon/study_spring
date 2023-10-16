@@ -27,8 +27,10 @@ UPDATE board0803 SET originbidx=#{bidx} where bidx=#{bidx}
 </sql>
 
 <select id="boardList" parameterType="scri" resultType="bv">
-SELECT * FROM board0803 WHERE DELYN='N' 
-<include refid="search"/>
+SELECT b.bidx, b.subject, b.writer, b.writeday, b.viewcnt, IFNULL(c.commentcnt, 0) as commentcnt  FROM board0803 b left outer join 
+(select bidx, count(*) as commentcnt from comment0803 where delyn='N' group by bidx) c ON b.bidx= c.bidx
+ WHERE DELYN='N' 
+<include refid="search"/>    
 ORDER BY originbidx desc, depth asc limit #{page},#{perPageNum};
 </select>
 
@@ -63,5 +65,9 @@ update board0803 set depth = depth+1 where depth > #{depth}
 INSERT INTO board0803(originbidx, depth, level_, SUBJECT, contents, writer, midx, pwd, ip)
 VALUES(#{originbidx}, #{depth}+1, #{level_}+1, #{subject}, #{contents}, #{writer}, #{midx}, #{pwd}, #{ip})
 </insert>
+
+<select id="boardCommentCnt" parameterType="int">
+select count(*) as cnt from comment0803 where delyn='N' and bidx=#{bidx}
+</select>
 
 </mapper>

@@ -152,7 +152,7 @@ strong{
 				</c:if>
 			</c:forEach>
 			<a href="${pageContext.request.contextPath}/board/boardContents.do?bidx=${bv.bidx}">
-			${bv.subject}</a></td>
+			${bv.subject}(${bv.commentcnt})</a></td>
 			<td>${bv.writer}</td>
 			<td>${bv.viewcnt}</td>
 			<td>${bv.writeday}</td>

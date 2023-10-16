@@ -33,7 +33,9 @@ public class BoardServiceImpl implements BoardService{
 	
 		int value = (scri.getPage()-1)*10;
 		scri.setPage(value);
+		
 		ArrayList<BoardVo> list = bsm.boardList(scri);
+		
 		return list;
 	}
 
@@ -68,6 +70,12 @@ public class BoardServiceImpl implements BoardService{
 	public int boardReply(BoardVo bv) {
 		bsm.boardUpdateDepth(bv.getDepth());
 		int value = bsm.boardReply(bv);
+		return value;
+	}
+
+	@Override
+	public int boardCommentCnt(int bidx) {
+		int value = bsm.boardCommentCnt(bidx);
 		return value;
 	}
 

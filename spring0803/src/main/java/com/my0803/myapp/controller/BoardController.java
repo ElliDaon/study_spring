@@ -1,19 +1,15 @@
 package com.my0803.myapp.controller;
 
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.ArrayList;
-
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
 import com.my0803.myapp.domain.BoardVo;
 import com.my0803.myapp.domain.PageMaker;
 import com.my0803.myapp.domain.SearchCriteria;
@@ -80,6 +76,7 @@ public class BoardController {
 		model.addAttribute("bv",bv);
 		return "/board/boardContents";
 	}
+	
 	@RequestMapping(value="/boardModify.do")
 	public String boardModify(@RequestParam("bidx") String bidx, Model model, HttpSession session) throws Exception {
 		String ip = InetAddress.getLocalHost().getHostAddress();
@@ -89,6 +86,7 @@ public class BoardController {
 		model.addAttribute("bv",bv);
 		return "/board/boardModify";
 	}
+	
 	@RequestMapping(value="/boardModifyAction.do")
 	public String boardModifyAction(BoardVo bv) {
 		int result = bs.boardModify(bv);

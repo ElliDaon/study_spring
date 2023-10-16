@@ -3,8 +3,8 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.my0803.myapp.persistance.CommentService_Mapper">
-<select id="commentList" resultType="cv">
-select * from comment0803 where delyn='N' order by cidx desc
+<select id="commentList" parameterType="int" resultType="cv">
+select * from comment0803 where delyn='N' AND bidx=#{bidx} order by cidx desc
 </select>
 
 <update id="commentDelete" parameterType="int">

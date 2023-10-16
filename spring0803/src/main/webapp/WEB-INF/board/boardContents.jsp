@@ -24,7 +24,7 @@ location.href="${login}";
 <script type="text/javascript">
 //자동실행영역
 $(document).ready(function(){
-	
+
 	$.boardCommentList();
 	
 	$("#save").on("click",function(){
@@ -72,7 +72,7 @@ $.boardCommentList= function(){
 	
 	$.ajax({
 		type : "get",
-		url : "${pageContext.request.contextPath}/comment/commentList.do",
+		url : "${pageContext.request.contextPath}/comment/commentList.do?bidx=${bv.bidx}",
 		dataType : "json",
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		cache : false,

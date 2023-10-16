@@ -19,6 +19,7 @@ public class BoardVo {
 	private String pwd;
 	private String filename2;
 	private MultipartFile filename;
+	private int commentcnt;
 	
 	
 	public MultipartFile getFilename() {
@@ -119,6 +120,12 @@ public class BoardVo {
 	}
 	public void setMidx(int midx) {
 		this.midx = midx;
+	}
+	public int getCommentcnt() {
+		return commentcnt;
+	}
+	public void setCommentcnt(int commentcnt) {
+		this.commentcnt = commentcnt;
 	}
 	
 	

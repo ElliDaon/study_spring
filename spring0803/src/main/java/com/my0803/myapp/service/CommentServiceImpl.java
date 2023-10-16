@@ -18,8 +18,8 @@ private CommentService_Mapper csm;
 	}
 	
 	@Override
-	public ArrayList<CommentVo> commentList() {
-		ArrayList<CommentVo> cv = csm.commentList();
+	public ArrayList<CommentVo> commentList(int bidx) {
+		ArrayList<CommentVo> cv = csm.commentList(bidx);
 		return cv;
 	}
 
