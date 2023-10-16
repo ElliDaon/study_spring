@@ -46,7 +46,7 @@ $(document).ready(function(){
 			},
 			cache : false,
 			success : function(data){
-				alert("통신성공");
+				//alert("통신성공");
 				//alert(data.value);
 				//if(data.value==1){
 				//	alert("등록성공");

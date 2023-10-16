@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Isolation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.my0803.myapp.domain.BoardVo;
 import com.my0803.myapp.domain.SearchCriteria;
@@ -65,11 +67,13 @@ public class BoardServiceImpl implements BoardService{
 		
 		return value;
 	}
-
+	
+	@Transactional
 	@Override
 	public int boardReply(BoardVo bv) {
-		bsm.boardUpdateDepth(bv.getDepth());
-		int value = bsm.boardReply(bv);
+		bsm.boardUpdateDepth(bv);
+		bsm.boardReply(bv);
+		int value = bv.getBidx();
 		return value;
 	}
 

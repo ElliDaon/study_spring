@@ -15,6 +15,6 @@ public interface BoardService_Mapper {
 	public int boardModify(BoardVo bv);
 	public int boardDelete(BoardVo bv);
 	public int boardReply(BoardVo bv);
-	public int boardUpdateDepth(int depth);
+	public int boardUpdateDepth(BoardVo bv);
 	public int boardCommentCnt(int bidx);
 }

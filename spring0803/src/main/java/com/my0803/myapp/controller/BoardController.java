@@ -129,7 +129,7 @@ public class BoardController {
 		bv.setMidx(((Integer)session.getAttribute("midx")).intValue());
 		String ip = InetAddress.getLocalHost().getHostAddress();
 		bv.setIp(ip);
-		bs.boardReply(bv);
-		return "redirect:/board/boardList.do";
+		int bidx = bs.boardReply(bv);
+		return "redirect:/board/boardContents.do?bidx="+bidx;
 	}
 }
