@@ -6,4 +6,14 @@
 <select id="commentList" resultType="cv">
 select * from comment0803 where delyn='N' order by cidx desc
 </select>
+
+<update id="commentDelete" parameterType="int">
+UPDATE comment0803 SET delyn='Y'
+WHERE cidx = #{cidx}
+</update>
+
+<insert id="commentWrite" parameterType="cv">
+insert into comment0803(cwriter, ccontents, midx, bidx, cip)
+values(#{cwriter}, #{ccontents}, #{midx}, #{bidx}, #{cip})
+</insert>
 </mapper>

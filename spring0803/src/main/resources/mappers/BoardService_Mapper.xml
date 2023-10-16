@@ -42,12 +42,12 @@ SELECT * FROM board0803 WHERE bidx=#{bidx}
 </select>
 
 <update id="boardModify" parameterType="bv" >
-UPDATE board0803 SET SUBJECT = #{subject}, CONTENTS=#{contents}, WRITER=#{writer}, MODIFYDAY=now()
+UPDATE board0803 SET SUBJECT = #{subject}, CONTENTS=#{contents}, WRITER=#{writer}, MODIFYDAY=now(), ip=#{ip}
 WHERE bidx=#{bidx} AND PWD=#{pwd}
 </update>
 
 <update id="boardDelete" parameterType="bv" >
-UPDATE board0803 SET DELYN='Y'
+UPDATE board0803 SET DELYN='Y', MODIFYDAY=now()
 WHERE bidx=#{bidx} AND PWD=#{pwd}
 </update>
 
@@ -63,4 +63,5 @@ update board0803 set depth = depth+1 where depth > #{depth}
 INSERT INTO board0803(originbidx, depth, level_, SUBJECT, contents, writer, midx, pwd, ip)
 VALUES(#{originbidx}, #{depth}+1, #{level_}+1, #{subject}, #{contents}, #{writer}, #{midx}, #{pwd}, #{ip})
 </insert>
+
 </mapper>

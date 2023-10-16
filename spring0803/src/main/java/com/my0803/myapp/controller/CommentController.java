@@ -1,6 +1,10 @@
 package com.my0803.myapp.controller;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +52,22 @@ public class CommentController {
 			
 		}
 		str = "[" + str + "]";
+		return str;
+	}
+	@ResponseBody
+	@RequestMapping(value="/commentDelete.do")
+	public String commentDelete(int cidx) {
+		int value = cs.commentDelete(cidx);
+		String str="{\"value\":\"" + value + "\"}";
+		return str;
+	}
+	@ResponseBody
+	@RequestMapping(value="/commentWrite.do")
+	public String commentWrite(CommentVo cv, HttpSession session) throws Exception {
+		String ip = InetAddress.getLocalHost().getHostAddress();
+		cv.setCip(ip);
+		int value = cs.commentWrite(cv);
+		String str="{\"value\":\"" + value + "\"}";
 		return str;
 	}
 }

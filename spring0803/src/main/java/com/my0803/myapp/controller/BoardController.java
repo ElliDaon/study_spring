@@ -81,9 +81,11 @@ public class BoardController {
 		return "/board/boardContents";
 	}
 	@RequestMapping(value="/boardModify.do")
-	public String boardModify(@RequestParam("bidx") String bidx, Model model) {
+	public String boardModify(@RequestParam("bidx") String bidx, Model model, HttpSession session) throws Exception {
+		String ip = InetAddress.getLocalHost().getHostAddress();
 		int bidx_n = Integer.parseInt(bidx);
 		BoardVo bv = bs.boardContents(bidx_n);
+		bv.setIp(ip);
 		model.addAttribute("bv",bv);
 		return "/board/boardModify";
 	}
@@ -130,6 +132,6 @@ public class BoardController {
 		String ip = InetAddress.getLocalHost().getHostAddress();
 		bv.setIp(ip);
 		bs.boardReply(bv);
-		return "redirect:/board/boardContents.do?bidx="+bv.getBidx();
+		return "redirect:/board/boardList.do";
 	}
 }

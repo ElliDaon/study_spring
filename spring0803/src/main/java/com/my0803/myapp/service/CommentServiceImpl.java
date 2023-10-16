@@ -23,4 +23,16 @@ private CommentService_Mapper csm;
 		return cv;
 	}
 
+	@Override
+	public int commentDelete(int cidx) {
+		int value = csm.commentDelete(cidx);
+		return value;
+	}
+
+	@Override
+	public int commentWrite(CommentVo cv) {
+		int value = csm.commentWrite(cv);
+		return value;
+	}
+
 }
