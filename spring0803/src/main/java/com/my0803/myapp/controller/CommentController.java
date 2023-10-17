@@ -2,16 +2,22 @@ package com.my0803.myapp.controller;
 
 import java.net.InetAddress;
 import java.util.ArrayList;
+
 import javax.servlet.http.HttpSession;
+
+import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.my0803.myapp.domain.CommentVo;
 import com.my0803.myapp.service.CommentService;
 
-@Controller
+@RestController
 @RequestMapping(value="/comment")
 public class CommentController {
 	
@@ -19,19 +25,21 @@ public class CommentController {
 	private CommentService cs;
 	
 	
-	@ResponseBody
-	@RequestMapping(value="/commentList.do", produces = "application/text; charset=utf8")
-	public String boardList(@RequestParam("bidx") int bidx) {
-		String str="";
+	
+	@RequestMapping(value="/{bidx}/commentList.do")
+	public JSONObject boardList(@PathVariable("bidx") int bidx) {
+		
+		JSONObject js = new JSONObject();
 		ArrayList<CommentVo> list = cs.commentList(bidx);
-		int size = list.size();
+		js.put("list", list);
+		/*
+		String str="";
 		int cidx = 0;
 		String cwriter = "";
 		String ccontents = "";
 		String cwriteday = "";
 		int midx = 0;
 		String comma = "";
-		for(int i=0; i<size; i++) {
 			cidx=list.get(i).getCidx();
 			cwriter=list.get(i).getCwriter();
 			ccontents=list.get(i).getCcontents();
@@ -49,22 +57,33 @@ public class CommentController {
 			
 		}
 		str = "[" + str + "]";
-		return str;
+		*/
+		
+		return js;
 	}
-	@ResponseBody
-	@RequestMapping(value="/commentDelete.do")
-	public String commentDelete(int cidx) {
+	
+	@RequestMapping(value="/commentDelete.do", method=RequestMethod.POST)
+	public JSONObject commentDelete(int cidx) {
 		int value = cs.commentDelete(cidx);
-		String str="{\"value\":\"" + value + "\"}";
-		return str;
+		//String str= "{\"value\":\"" + value + "\"}";
+		
+		JSONObject js = new JSONObject();
+		js.put("value", value);
+		
+		return js;
 	}
-	@ResponseBody
-	@RequestMapping(value="/commentWrite.do")
-	public String commentWrite(CommentVo cv, HttpSession session) throws Exception {
+	
+	@RequestMapping(value="/commentWrite.do", method=RequestMethod.POST)
+	public JSONObject commentWrite(CommentVo cv, HttpSession session) throws Exception {
 		String ip = InetAddress.getLocalHost().getHostAddress();
 		cv.setCip(ip);
 		int value = cs.commentWrite(cv);
-		String str="{\"value\":\"" + value + "\"}";
-		return str;
+		//String str="{\"value\":\"" + value + "\"}";
+		
+		JSONObject js = new JSONObject();
+		js.put("value", value);
+		
+		return js;
+
 	}
 }

@@ -46,11 +46,6 @@ $(document).ready(function(){
 			},
 			cache : false,
 			success : function(data){
-				//alert("통신성공");
-				//alert(data.value);
-				//if(data.value==1){
-				//	alert("등록성공");
-				//}
 				$.boardCommentList();
 				$("#cwriter").val("");
 				$("#ccontents").val("");
@@ -69,19 +64,19 @@ $(document).ready(function(){
 
 
 $.boardCommentList= function(){
-	
+
 	$.ajax({
 		type : "get",
-		url : "${pageContext.request.contextPath}/comment/commentList.do?bidx=${bv.bidx}",
+		url : "${pageContext.request.contextPath}/comment/${bv.bidx}/commentList.do",
 		dataType : "json",
 		contentType: "application/x-www-form-urlencoded; charset=UTF-8",
 		cache : false,
 		success : function(data){
 			//alert("통신성공");
-			commentList(data);
+			commentList(data.list);
 		},
 		error : function(){
-			alert("통신오류 실패");
+			alert("실패");
 		}		
 	});
 	
