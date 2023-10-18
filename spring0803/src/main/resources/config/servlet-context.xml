@@ -39,6 +39,7 @@
 			<mapping path="/board/boardWrite.do"/>
 			<mapping path="/board/boardModify.do"/>
 			<mapping path="/board/boardReply.do"/>
+			<mapping path="/board/boardList.do"/>
 			<beans:ref bean="authInterceptor"/>
 		</interceptor>
 	</interceptors>
@@ -52,7 +53,7 @@
 			<beans:ref bean="loginInterceptor"/>
 		</interceptor>
 	</interceptors>
-	<context:component-scan base-package="com.my0803.myapp" />
+	<context:component-scan base-package="com.my0803.myapp.controller" />
 
 	
 	

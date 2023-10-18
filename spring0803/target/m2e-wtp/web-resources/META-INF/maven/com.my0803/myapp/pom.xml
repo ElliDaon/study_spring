@@ -49,8 +49,8 @@
 		   <version>2.2</version>
 		</dependency>		  
 		    
-		    <!--  Aop-->
-		    <dependency>
+		<!--  Aop  -->
+		<dependency>
 	        <groupId>org.springframework</groupId>
 	        <artifactId>spring-aop</artifactId>
 	        <version>${org.springframework-version}</version>
@@ -92,6 +92,7 @@
 		   <artifactId>spring-security-config</artifactId>
 		   <version>5.2.1.RELEASE</version>
 		</dependency>
+		
 
 		<!-- AspectJ -->
 		<dependency>
@@ -206,6 +207,13 @@
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
+		
+		<!-- 스프링 로그 -->	
+		<dependency>
+			<groupId>org.bgee.log4jdbc-log4j2</groupId>
+			<artifactId>log4jdbc-log4j2-jdbc4</artifactId>
+			<version>1.16</version>
+		</dependency>   
 
 		<!-- Servlet -->
 		<dependency>

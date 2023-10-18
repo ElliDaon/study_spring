@@ -54,7 +54,6 @@
 	<!-- 빈으로 등록 될 준비를 마친 클래스들을 스캔하여, 빈으로 등록해주는 것이다. -->
 	<context:component-scan base-package="com.my0803.myapp">
 		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/> <!-- 얘네는 서블릿 컨트롤러에서 설정해줄거임 -->
-		
 	</context:component-scan>
 	
     </beans>

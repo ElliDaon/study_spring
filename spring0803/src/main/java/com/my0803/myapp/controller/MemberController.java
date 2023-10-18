@@ -83,6 +83,7 @@ public class MemberController {
 				path="index.jsp";
 			}
 		}else {
+			rttr.addFlashAttribute("msg", "로그인해주세요");
 			path="member/memberLogin.do";
 		}
 		return "redirect:/"+path;

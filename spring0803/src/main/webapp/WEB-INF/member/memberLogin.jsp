@@ -114,6 +114,12 @@ div #button:hover {
 <body>
 <script>
 
+function message(){
+	<%if(request.getAttribute("msg") != null){%>
+		alert(<%=request.getAttribute("msg")%>);
+	<%}%>
+}
+
 function check(){
 //alert("체크함수들어옴");
 	
