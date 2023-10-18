@@ -27,9 +27,12 @@ UPDATE board0803 SET originbidx=#{bidx} where bidx=#{bidx}
 </sql>
 
 <select id="boardList" parameterType="scri" resultType="bv">
-SELECT b.bidx, b.subject, b.writer, b.writeday, b.viewcnt, b.originbidx, b.depth, b.level_,IFNULL(c.commentcnt, 0) as commentcnt  FROM board0803 b left outer join 
-(select bidx, count(*) as commentcnt from comment0803 where delyn='N' group by bidx) c ON b.bidx= c.bidx
- WHERE DELYN='N' 
+SELECT b.bidx, b.subject, b.writer, b.writeday, b.viewcnt, b.originbidx, b.depth, b.level_,IFNULL(c.commentcnt, 0) as commentcnt 
+FROM board0803 b 
+left outer join 
+(select bidx, count(*) as commentcnt from comment0803 where delyn='N' group by bidx) c 
+ON b.bidx= c.bidx 
+WHERE DELYN='N' 
 <include refid="search"/>    
 ORDER BY originbidx desc, depth asc limit #{page},#{perPageNum};
 </select>

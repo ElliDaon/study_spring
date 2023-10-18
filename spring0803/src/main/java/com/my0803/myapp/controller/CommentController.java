@@ -79,8 +79,8 @@ public class CommentController {
 		cv.setCip(ip);
 		int value = cs.commentWrite(cv);
 		//String str="{\"value\":\"" + value + "\"}";
-		
 		JSONObject js = new JSONObject();
+		
 		js.put("value", value);
 		
 		return js;

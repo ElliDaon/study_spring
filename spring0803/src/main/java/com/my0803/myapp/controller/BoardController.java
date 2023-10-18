@@ -49,8 +49,8 @@ public class BoardController {
 		String ip = InetAddress.getLocalHost().getHostAddress();
 		bv.setIp(ip);
 		bv.setFilename2(uploadedFileName);
-		
-		bv.setMidx(((Integer)session.getAttribute("midx")).intValue());
+		//System.out.println(session.getAttribute("midx"));
+		bv.setMidx((Integer.parseInt(session.getAttribute("midx").toString())));
 		int value = bs.boardInsert(bv);
 		
 		return "redirect:/board/boardList.do";

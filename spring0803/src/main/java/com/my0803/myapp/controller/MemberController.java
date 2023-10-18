@@ -3,6 +3,7 @@ package com.my0803.myapp.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.my0803.myapp.domain.MemberVo;
 import com.my0803.myapp.service.MemberService;
@@ -60,18 +61,27 @@ public class MemberController {
 	public String memberLoginAction(
 			@RequestParam("memberId") String memberId, 
 			@RequestParam("memberPwd") String memberPwd,
-			HttpSession session) {
-
+			//HttpSession session,
+			HttpServletRequest request,
+			RedirectAttributes rttr) {
 		
+
 		MemberVo mv = ms.memberLogin2(memberId);
 		String path="";
 		
 		if(mv!=null&&bcryptPasswordEncoder.matches(memberPwd, mv.getMemberPwd())) {
+			//session.setAttribute("midx",mv.getMidx());
+			//session.setAttribute("memberName", mv.getMemberName());
 			
-			session.setAttribute("midx",mv.getMidx());
-			session.setAttribute("memberName", mv.getMemberName());
-			path="index.jsp";
+			//1회용 모델클래스 RedirectAttribute
+			rttr.addAttribute("midx", mv.getMidx());
+			rttr.addAttribute("memberName", mv.getMemberName());
 			
+			if(request.getSession().getAttribute("saveUrl")!= null) {
+				path=(String)request.getSession().getAttribute("saveUrl").toString().substring(request.getContextPath().length()+1);
+			}else {
+				path="index.jsp";
+			}
 		}else {
 			path="member/memberLogin.do";
 		}
